@@ -36,6 +36,7 @@ while (totalEmpHours <= MAX_WORKING_HRS && totalWorkingDays < NO_OF_WORKING_DAYS
 let empWage = calcDailyWage(totalEmpHours);
 console.log(`Hours worked : ${totalEmpHours}; Days worked : ${totalWorkingDays}; Employee Wage : ${empWage}`);
 
+//UC 7A
 let totalEmpWage = 0;
 function sum(dailyWage) {
     totalEmpWage += dailyWage;
@@ -47,3 +48,48 @@ function totalWages(totalWage, dailyWage) {
     return totalWage + dailyWage;
 }
 console.log("Wage with reduce - " + empDailyWageArray.reduce(totalWages, 0));
+
+//UC 7B
+let dailyCntr = 0;
+function mapDayWithWage(dailyWage) {
+    dailyCntr++;
+    return dailyCntr + " => " + dailyWage;
+}
+
+let mapDayWithWageArr = empDailyWageArray.map(mapDayWithWage);
+console.log("Daily wage map: ");
+console.log(mapDayWithWageArr);
+
+//UC 7C
+function fullTimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+let fullDayWageArr = mapDayWithWageArr.filter(fullTimeWage);
+console.log("Full days only : ");
+console.log(fullDayWageArr);
+
+//UC 7D
+function findFullTimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+console.log("First full time occurence : " + mapDayWithWageArr.find(findFullTimeWage));
+
+//UC 7E
+function isAllFullTimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+console.log("Are all Full Time entries? " + fullDayWageArr.every(isAllFullTimeWage));
+
+//UC 7F
+function isAnyPartTimeWage(dailyWage) {
+    return dailyWage.includes("80");
+}
+console.log("Is any Part Time Entry? " + mapDayWithWageArr.some(isAnyPartTimeWage));
+
+//UC 7G
+function totalDaysWorked(numOfDays, dailyWage) {
+    if (dailyWage > 0)
+        return numOfDays + 1;
+    return numOfDays;
+}
+console.log("No of days worked : " + empDailyWageArray.reduce(totalDaysWorked, 0));
