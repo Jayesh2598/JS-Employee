@@ -106,7 +106,7 @@ function calcDailyWage(empHours) {
 
     //UC 8
     console.log(empDailyWageMap);
-    function totalWages(totalWage, dailyWage){
+    function totalWages(totalWage, dailyWage) {
         return totalWage + dailyWage;
     }
     console.log("Employee Wage Map total Wage : " + Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
@@ -124,7 +124,7 @@ function calcDailyWage(empHours) {
     let partWorkingDays = new Array();
     let fullWorkingDays = new Array();
     empDailyHoursMap.forEach((value, key) => {
-        if(value == 8)
+        if (value == 8)
             fullWorkingDays.push(key);
         else if (value == 4)
             partWorkingDays.push(key);
@@ -151,8 +151,8 @@ while (totalEmpHours <= MAX_WORKING_HRS && totalWorkingDays < NO_OF_WORKING_DAYS
         dailyHours: empHours,
         dailyWage: calcDailyWage(empHours),
         toString() {
-            return '\nDay: ' + this.dayNum + ' => Working Hours: '+ this.dailyHours 
-                    + ' And Wage Earned: ' + this.dailyWage
+            return '\nDay: ' + this.dayNum + ' => Working Hours: ' + this.dailyHours
+                + ' And Wage Earned: ' + this.dailyWage
         },
     });
 }
@@ -161,11 +161,11 @@ console.log("Showing Daily Hrs and Wage Earned : " + empDailyHrsAndWageArray);
 // UC 11
 
 let totalWage = empDailyHrsAndWageArray
-                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage>0)
-                    .reduce((totalWage, dailyHrsAndWage) => totalWage += dailyHrsAndWage.dailyWage, 0);
+                .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+                .reduce((totalWage, dailyHrsAndWage) => totalWage += dailyHrsAndWage.dailyWage, 0);
 let totalHours = empDailyHrsAndWageArray
-                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours>0)
-                    .reduce((totalHrs, dailyHrsAndWage) => totalHrs += dailyHrsAndWage.dailyHours, 0);
+                .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours > 0)
+                .reduce((totalHrs, dailyHrsAndWage) => totalHrs += dailyHrsAndWage.dailyHours, 0);
 console.log(`Total Hours: ${totalHours}; Total Wages: ${totalWage}`);
 
 process.stdout.write("Logging work days.");
