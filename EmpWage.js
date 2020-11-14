@@ -17,13 +17,33 @@ function getWorkingHrs(empCheck) {
     }
 }
 
+function calcDailyWage(empHours) {
+    return empHours * WAGE_PER_HR;
+}
+
 let totalWorkingDays = 0;
 let totalEmpHours = 0;
+let empDailyWageArray = new Array();
+
 while (totalEmpHours <= MAX_WORKING_HRS && totalWorkingDays < NO_OF_WORKING_DAYS) {
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random() * 3);
-    totalEmpHours += getWorkingHrs(empCheck);
+    let empHours = getWorkingHrs(empCheck);
+    totalEmpHours += empHours;
+    empDailyWageArray.push(calcDailyWage(empHours));
 }
 
-let empWage = totalEmpHours * WAGE_PER_HR;
+let empWage = calcDailyWage(totalEmpHours);
 console.log(`Hours worked : ${totalEmpHours}; Days worked : ${totalWorkingDays}; Employee Wage : ${empWage}`);
+
+let totalEmpWage = 0;
+function sum(dailyWage) {
+    totalEmpWage += dailyWage;
+}
+empDailyWageArray.forEach(sum);
+console.log(`Hours worked : ${totalEmpHours}; Days worked : ${totalWorkingDays}; Employee Wage : ${totalEmpWage}`);
+
+function totalWages(totalWage, dailyWage) {
+    return totalWage + dailyWage;
+}
+console.log("Wage with reduce - " + empDailyWageArray.reduce(totalWages, 0));
